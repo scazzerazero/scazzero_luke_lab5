@@ -36,6 +36,8 @@ class Stepper:
       print("we stisfied the condition! ADCread= "+str(self.ADC.read(0)))
       GPIO.output(self.ledPin, GPIO.HIGH)
       self.__halfstep(1)
+    GPIO.output(self.ledPin, GPIO.LOW)
+
 
 
   #in class motor control
