@@ -11,6 +11,7 @@ class Stepper:
     GPIO.setmode(GPIO.BCM)
     for pin in pins:
       GPIO.setup(pin, GPIO.OUT, initial=0)
+    GPIO.setup(ledPin,GPIO.OUT, initial=0)
     self.sequence= [ [1,0,0,0],[1,1,0,0],[0,1,0,0],[0,1,1,0],
     [0,0,1,0],[0,0,1,1],[0,0,0,1],[1,0,0,1] ] #sequence of steps to go through on whole cycle
     self.pins=pins
