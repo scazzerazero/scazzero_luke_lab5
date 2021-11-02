@@ -54,21 +54,20 @@ while True:
   try:
     with open("lab5_text.txt",'r') as f:
       form=json.load(f)
-      time.sleep(1)
+      time.sleep(3)
       print(form)
     if form['angleVal'] != None:
-      print("angleVal != None!!! we in the for statement!")
       angle=int(form['angleVal'])
       print("angle= "+str(angle))
       stepsReq=float(angle*(512*8)/(360)) #512*8 is 1 rev in the ccw direction.
       print("stepsReq= " +str(stepsReq))
       moveSteps(int(stepsReq),1) 
-      with open('lab5_text.txt', 'w') as f:    #clear text file
-        json.dump({'angleVal':0,'zerobutton':None},f)
-    if str(form['zerobutton'])=="ZeroMotor":
+      #with open('lab5_text.txt', 'w') as f:    #clear text file
+      #  json.dump({'angleVal':0,'zerobutton':None},f)
+    '''if str(form['zerobutton'])=="ZeroMotor":
       print("ZERO DAT BITCH PLEASE")
-      with open('lab5_text.txt', 'w') as f:    #clear text file
-        json.dump({'angleVal':0,'zerobutton':None},f)
+      with open('lab5_tex.txt', 'w') as f:    #clear text file
+        json.dump({'angleVal':0,'zerobutton':None},f)'''
       
   except KeyboardInterrupt:
     print("\nExiting!")
