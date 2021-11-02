@@ -5,7 +5,7 @@ GPIO.setwarnings(False)
 
 from stepper_class import Stepper
 
-StepperObject=Stepper([18,21,22,23])# controller inputs: in1, in2, in3, in4
+StepperObject=Stepper([18,21,22,23],16)# controller inputs: in1, in2, in3, in4. Led pin=16
 
 while True:
   try:
@@ -18,9 +18,10 @@ while True:
       StepperObject.goAngle(angle)
 
       
-    '''if str(form['zerobutton'])=="ZeroMotor":
+    if str(form['zerobutton'])=="ZeroMotor":
       print("ZERO DAT BITCH PLEASE")
-    '''    
+      StepperObject.Zero()
+      
   except KeyboardInterrupt:
     print("\nExiting!")
     GPIO.cleanup()

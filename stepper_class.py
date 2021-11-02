@@ -1,21 +1,23 @@
 import RPi.GPIO as GPIO 
 import time 
-#import PCF8591 #from a directory
+from PCF8591_class import PCF8591 #from a directory
+
 
 
 
 class Stepper:
 
-  def __init__(self,pins):  #constructor
+  def __init__(self,pins,ledPin):  #constructor
     GPIO.setmode(GPIO.BCM)
     for pin in pins:
       GPIO.setup(pin, GPIO.OUT, initial=0)
     self.sequence= [ [1,0,0,0],[1,1,0,0],[0,1,0,0],[0,1,1,0],
     [0,0,1,0],[0,0,1,1],[0,0,0,1],[1,0,0,1] ] #sequence of steps to go through on whole cycle
     self.pins=pins
+    self.ledPin=ledPin
     self.angle=0 #initial angle
     self.state=0 #current position in stator sequence
-    #self.ADC=PCF8591(0x48) # By composition, we're extending the PCF8591 class. using it to define our Joystick class's attribute self.ADC
+    self.ADC=PCF8591(0x48) # By composition, we're extending the PCF8591 class. using it to define our Joystick class's attribute self.ADC
 
     
   def goAngle(self,targetAngle):
@@ -28,9 +30,12 @@ class Stepper:
     self.__moveSteps(int(abs(stepsReq)),sign(diff)) #steps required, direction (+/- 1)
     self.angle=targetAngle #the current angle is now the angle we just moved to!
     
-  #def Zero(self):
-  #  self.ADC.read(0) #channel zero
-  
+  def Zero(self):
+    while self.ADC.read(0)>20 : #channel zero reads thermistor value
+      GPIO.output(self.ledPin, GPIO.HIGH)
+      self.__halfSteps(1)
+
+
   #in class motor control
   
   def __delay_us(self,tus): # use microseconds to improve time resolution
