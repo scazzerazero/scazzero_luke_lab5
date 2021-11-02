@@ -55,7 +55,7 @@ while True:
     with open("lab5_text.txt",'r') as f:
       form=json.load(f)
       time.sleep(1)
-    print(form['angleVal'])
+    print(form)
     if form['angleVal'] != None:
       angle=int(form['angleVal'])
       stepsReq=int(angle*(512*8)/(360)) #512*8 is 1 rev in the ccw direction.
