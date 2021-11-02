@@ -10,19 +10,21 @@ cgitb.enable()
 print('Content-type:text/html\n\n <!-- every print line will now be interp as html-->')
 
 form=cgi.FieldStorage()
-print(form.keys())
+print('<br>')
+print(' The whole form:: '+str(form)+'<br>')
 print('<br>')
 print("value attatched to key 1: %s <br>"% form.getvalue('anglebutton')) #feed .getvalue a 'key'
 print("value attatched to key 2: %s <br>"% form.getvalue('zerobutton'))
+print("The angle value sent in: %s <br>"% form.getvalue('angleVal'))
+
 
 print('<html>')
 print('<head><title>Stepper motor program!</title></head>')
 print('<body style="background-color:lightgreen;">')
 print('<h3>What ANGLE we goin to?</h3>')
 print('<form action="/cgi-bin/lab5_cgi.py" method="POST";text-align:center>')
-print(' <input type="text" name="Angle" min="0" max="360" value="180"/>')
-print('<br>')
-print(' The whole form:: '+str(form)+'<br>')
+print(' <input type="text" name="angleVal" min="0" max="360" value="180"/>')
+
 
 print('  <input type="submit" name ="anglebutton" value="SubmitAngle">')
 print('  <br><br>')
