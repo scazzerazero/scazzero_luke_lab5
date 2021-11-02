@@ -50,19 +50,21 @@ def moveSteps(steps,dir):
 
 
 
-
-try:
-  with open("lab5_text.txt",'r') as f:
-    form=json.load(f)
-    time.sleep(0.1)
-  
-  moveSteps(float(form['angleVal']),1) #512*8 is 1 step in the ccw direction.
-  if str(form['zerobutton'])=="ZeroMotor":
-    print("ZERO DAT BITCH PLEASE")
-  
-except:
-  pass
-GPIO.cleanup() 
+while True:
+  try:
+    with open("lab5_text.txt",'r') as f:
+      form=json.load(f)
+      time.sleep(0.1)
+    
+    moveSteps(float(form['angleVal']),1) #512*8 is 1 step in the ccw direction.
+    if str(form['zerobutton'])=="ZeroMotor":
+      print("ZERO DAT BITCH PLEASE")
+  except:
+    pass
+  except KeyboardInterrupt:
+    print("\nExiting!")
+    GPIO.cleanup()
+    break
 
 #now convert this into a class. So you can make stepper object and make some methods to make it do the thing you want.
 #two methods. Move to an angle. Convert half steps to angle. we calcualted that conversion in the notes. another instance variable must be the current angle too.
