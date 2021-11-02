@@ -32,7 +32,7 @@ def halfstep(dir):
   if state>7: state=0 # we really ony need to check 8 or -1
   elif state<0:state=7
   for pin in range(4):
-    print("GPIO output: sequence["+str(state)+"]"+"["+str(pin)+"]"+"= "+ str(sequence[state][pin]))
+    #print("GPIO output: sequence["+str(state)+"]"+"["+str(pin)+"]"+"= "+ str(sequence[state][pin]))
     GPIO.output(pins[pin], sequence[state][pin]) #indexes sequence [chunk] then the pins in it
 
   delay_us(1000)
@@ -54,20 +54,19 @@ while True:
   try:
     with open("lab5_text.txt",'r') as f:
       form=json.load(f)
-      time.sleep(0.3)
+      time.sleep(1)
     angle=float(form['angleVal'])
     stepsReq=angle*(512*8)/(2*3.1415)#512*8 is 1 rev in the ccw direction.
-
+    
     if float(form['angleVal']) > 0:
       moveSteps(int(stepsReq),1) 
-
-    with open('lab5_text.txt', 'w') as f:    #clear text file
-      json.dump({'angleVal':0,'zerobutton':None},f)
-
-
+      with open('lab5_text.txt', 'w') as f:    #clear text file
+        json.dump({'angleVal':0,'zerobutton':None},f)
     if str(form['zerobutton'])=="ZeroMotor":
       print("ZERO DAT BITCH PLEASE")
-
+      with open('lab5_text.txt', 'w') as f:    #clear text file
+        json.dump({'angleVal':0,'zerobutton':None},f)
+      
   except KeyboardInterrupt:
     print("\nExiting!")
     GPIO.cleanup()
