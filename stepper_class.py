@@ -32,7 +32,7 @@ class Stepper:
     self.angle=targetAngle #the current angle is now the angle we just moved to!
     
   def Zero(self):
-    while self.ADC.read(0)>20 : #channel zero reads thermistor value
+    while self.ADC.read(0)<100 : #channel zero reads thermistor value. Less light = higher val
       GPIO.output(self.ledPin, GPIO.HIGH)
       self.__halfstep(1)
 
