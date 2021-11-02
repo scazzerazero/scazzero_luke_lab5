@@ -23,8 +23,9 @@ while True:
       StepperObject.Zero()
       time.sleep(5)
       print("Bitch is ZEROED!")
-      #with open('lab5_text.txt','w') as f:
-	    #  json.dump({'angleVal':form.getvalue('angleVal'),'zerobutton':None},f)
+      with open('lab5_text.txt','w') as f:
+	      json.dump({'angleVal':form.getvalue('angleVal'),'zerobutton':None},f)
+      print("wrote this to txt file= "+str({'angleVal':form.getvalue('angleVal'),'zerobutton':None}))
   except KeyboardInterrupt:
     print("\nExiting!")
     GPIO.cleanup()
