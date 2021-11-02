@@ -56,7 +56,6 @@ while True:
       form=json.load(f)
       time.sleep(1)
 
-    
     if form['angleVal'] != None:
       angle=int(form['angleVal'])
       stepsReq=angle*(512*8)/(360) #512*8 is 1 rev in the ccw direction.
