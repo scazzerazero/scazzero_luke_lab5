@@ -28,7 +28,7 @@ def halfstep(dir):
   global state
   state+=dir#increment forward, decrement reverse
   #we dont want to go past the list. if we rolloff reset ourselves at beginning open. was previously state +=1
-  print("state= "+str(state))
+  #print("state= "+str(state))
   if state>7: state=0 # we really ony need to check 8 or -1
   elif state<0:state=7
   for pin in range(4):
@@ -42,7 +42,7 @@ def halfstep(dir):
 def moveSteps(steps,dir):
   #move actuation sequence a given number of half steps
   for step in range(steps):
-    print("iterating step in range(steps): "+str(step))
+    #print("iterating step in range(steps): "+str(step))
     halfstep(dir) #call halfsteps that number of times in right direction. Thats it.and
 
 
@@ -54,7 +54,7 @@ while True:
   try:
     with open("lab5_text.txt",'r') as f:
       form=json.load(f)
-      time.sleep(3)
+      time.sleep(1)
       print(form)
     if form['angleVal'] != None:
       angle=int(form['angleVal'])
@@ -62,8 +62,8 @@ while True:
       stepsReq=float(angle*(512*8)/(360)) #512*8 is 1 rev in the ccw direction.
       print("stepsReq= " +str(stepsReq))
       moveSteps(int(stepsReq),1) 
-      #with open('lab5_text.txt', 'w') as f:    #clear text file
-      #  json.dump({'angleVal':0,'zerobutton':None},f)
+      with open('lab5_text.txt', 'w') as f:    #clear text file
+        json.dump({'angleVal':0,'zerobutton':None},f)
     '''if str(form['zerobutton'])=="ZeroMotor":
       print("ZERO DAT BITCH PLEASE")
       with open('lab5_tex.txt', 'w') as f:    #clear text file
