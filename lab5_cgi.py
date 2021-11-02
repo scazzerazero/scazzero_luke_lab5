@@ -20,7 +20,7 @@ print('<body style="background-color:lightgreen;">')
 print('<h3>What ANGLE we goin to?</h3>')
 print('<form action="/cgi-bin/lab5_cgi.py" method="POST";text-align:center>')
 print(' <input type="text" name="Angle" min="0" max="360" value="180"/>')
-print(' selection= '+form+'<br>')
+print(' selection= '+str(form)+'<br>')
 
 print('  <input type="submit" name ="anglebutton" value="SubmitAngle">')
 print('  <br><br>')
