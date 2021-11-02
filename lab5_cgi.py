@@ -9,7 +9,6 @@ import cgitb #for exception handling
 cgitb.enable()
 print('Content-type:text/html\n\n <!-- every print line will now be interp as html-->')
 
-
 form=cgi.FieldStorage()
 print(form.keys())
 print("value of key 1: %s <br>"% form.getvalue('anglebutton'))

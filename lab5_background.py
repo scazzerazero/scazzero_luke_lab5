@@ -45,7 +45,6 @@ def moveSteps(steps,dir):
     print("iterating step in range(steps): "+str(step))
     halfstep(dir) #call halfsteps that number of times in right direction. Thats it.and
 
-
 try:
 
   moveSteps(512*8,1) #512*8 is 1 step in the ccw direction.
