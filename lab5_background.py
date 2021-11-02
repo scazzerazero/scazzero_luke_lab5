@@ -59,8 +59,7 @@ while True:
     moveSteps(float(form['angleVal']),1) #512*8 is 1 step in the ccw direction.
     if str(form['zerobutton'])=="ZeroMotor":
       print("ZERO DAT BITCH PLEASE")
-  except:
-    pass
+
   except KeyboardInterrupt:
     print("\nExiting!")
     GPIO.cleanup()
