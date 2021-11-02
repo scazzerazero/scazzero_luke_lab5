@@ -44,7 +44,8 @@ def moveSteps(steps,dir):
   for step in range(steps):
     #print("iterating step in range(steps): "+str(step))
     halfstep(dir) #call halfsteps that number of times in right direction. Thats it.and
-
+  with open('lab5_text.txt', 'w') as f:    #clear text file
+        json.dump({'angleVal':0,'zerobutton':None},f)
 
 
 
@@ -63,8 +64,7 @@ while True:
       print("stepsReq= " +str(stepsReq))
       moveSteps(int(stepsReq),1) 
       time.sleep(0.5)
-      with open('lab5_text.txt', 'w') as f:    #clear text file
-        json.dump({'angleVal':0,'zerobutton':None},f)
+      
     '''if str(form['zerobutton'])=="ZeroMotor":
       print("ZERO DAT BITCH PLEASE")
       with open('lab5_tex.txt', 'w') as f:    #clear text file
