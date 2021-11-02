@@ -23,9 +23,9 @@ class Stepper:
     diff = ( targetAngle - self.angle + 180 ) % 360 - 180;
     if (diff )< -180:
       diff += 360 
-    stepsReq=float(diff*(512*8)/(360)) #512*8 is 1 rev in the ccw direction.
+    stepsReq=diff*(512*8)/(360) #512*8 is 1 rev in the ccw direction.
     sign = lambda x: (1, -1)[x<0]
-    self.__moveSteps(abs(stepsReq),sign(diff)) #steps required, direction (+/- 1)
+    self.__moveSteps(int(abs(stepsReq)),sign(diff)) #steps required, direction (+/- 1)
 
     
   #def Zero(self):
