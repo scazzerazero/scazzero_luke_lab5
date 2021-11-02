@@ -5,12 +5,13 @@ import time
 
 
 class Stepper:
-  sequence= [ [1,0,0,0],[1,1,0,0],[0,1,0,0],[0,1,1,0],
-        [0,0,1,0],[0,0,1,1],[0,0,0,1],[1,0,0,1] ] #sequence of steps to go through on whole cycle
+
   def __init__(self,pins):  #constructor
     GPIO.setmode(GPIO.BCM)
     for pin in pins:
       GPIO.setup(pin, GPIO.OUT, initial=0)
+    self.sequence= [ [1,0,0,0],[1,1,0,0],[0,1,0,0],[0,1,1,0],
+    [0,0,1,0],[0,0,1,1],[0,0,0,1],[1,0,0,1] ] #sequence of steps to go through on whole cycle
     self.pins=pins
     self.angle=0 #initial angle
     self.state=0 #current position in stator sequence
@@ -24,15 +25,18 @@ class Stepper:
       diff += 360 
     stepsReq=float(diff*(512*8)/(360)) #512*8 is 1 rev in the ccw direction.
     sign = lambda x: (1, -1)[x<0]
-    moveSteps(abs(stepsReq),sign(diff)) #steps required, direction (+/- 1)
+    self.moveSteps(abs(stepsReq),sign(diff)) #steps required, direction (+/- 1)
 
     
   #def Zero(self):
   #  self.ADC.read(0) #channel zero
   
   
-  
-  def halfstep(dir):
+  def __delay_us(self,tus): # use microseconds to improve time resolution
+    endTime = time.time() + float(tus)/ float(1E6)
+    while time.time() < endTime:
+      pass
+  def __halfstep(self,dir):
     #dir=+/- 1 (ccw/cw)
     global state
     state+=dir#increment forward, decrement reverse
@@ -42,18 +46,15 @@ class Stepper:
     elif state<0:state=7
     for pin in range(4):
       #print("GPIO output: sequence["+str(state)+"]"+"["+str(pin)+"]"+"= "+ str(sequence[state][pin]))
-      GPIO.output(pins[pin], sequence[state][pin]) #indexes sequence [chunk] then the pins in it
-    delay_us(1000)
+      GPIO.output(self.pins[pin], self.sequence[self.state][pin]) #indexes sequence [chunk] then the pins in it
+    self.delay_us(1000)
 
 
     #make another private method called...move a certain # half st
-    def moveSteps(steps,dir):
+    def __moveSteps(self,steps,dir):
       #move actuation sequence a given number of half steps
       for step in range(steps):
         #print("iterating step in range(steps): "+str(step))
-        halfstep(dir) #call halfsteps that number of times in right direction. Thats it.and
-    def delay_us(tus): # use microseconds to improve time resolution
-      endTime = time.time() + float(tus)/ float(1E6)
-      while time.time() < endTime:
-        pass
+        self.halfstep(dir) #call halfsteps that number of times in right direction. Thats it.and
+
 
