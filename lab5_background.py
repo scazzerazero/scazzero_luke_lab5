@@ -23,7 +23,7 @@ while True:
       StepperObject.Zero()
       time.sleep(3)
       with open('lab5_text.txt','w') as f:
-	      json.dump({'angleVal':form['angleVal'],'zerobutton':None},f)
+	      json.dump({'angleVal':None,'zerobutton':None},f)
       print("wrote this to txt file= "+str({'angleVal':form.getvalue('angleVal'),'zerobutton':None}))
   except KeyboardInterrupt:
     print("\nExiting!")
