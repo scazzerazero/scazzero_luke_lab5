@@ -11,8 +11,9 @@ print('Content-type:text/html\n\n <!-- every print line will now be interp as ht
 
 form=cgi.FieldStorage()
 print(form.keys())
-print("value of key 1: %s <br>"% form.getvalue('anglebutton'))
-print("value of key 2: %s <br>"% form.getvalue('zerobutton'))
+print('<br>')
+print("value attatched to key 1: %s <br>"% form.getvalue('anglebutton')) #feed .getvalue a 'key'
+print("value attatched to key 2: %s <br>"% form.getvalue('zerobutton'))
 
 print('<html>')
 print('<head><title>Stepper motor program!</title></head>')
@@ -21,7 +22,7 @@ print('<h3>What ANGLE we goin to?</h3>')
 print('<form action="/cgi-bin/lab5_cgi.py" method="POST";text-align:center>')
 print(' <input type="text" name="Angle" min="0" max="360" value="180"/>')
 print('<br>')
-print(' selection= '+str(form)+'<br>')
+print(' The whole form:: '+str(form)+'<br>')
 
 print('  <input type="submit" name ="anglebutton" value="SubmitAngle">')
 print('  <br><br>')
