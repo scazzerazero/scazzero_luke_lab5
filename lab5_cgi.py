@@ -20,6 +20,8 @@ print("value attatched to zerobutton key: %s <br>"% form.getvalue('zerobutton'))
 print("The angle value sent in: %s <br>"% form.getvalue('angleVal'))
 #creating dict: {angleVal:180,zerobutton:None or ZeroMotor}
 formdict={'angleVal':form.getvalue('angleVal'),'zerobutton':form.getvalue('zerobutton')}
+print('<br>')
+print('The formdict being submitted: %s'% formdict)
 #loading up json file:
 with open('lab5_text.txt','w') as f:
 	json.dump(formdict,f)
