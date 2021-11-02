@@ -56,7 +56,7 @@ while True:
       form=json.load(f)
       time.sleep(1)
     angle=float(form['angleVal'])
-    stepsReq=angle*(512*8)/(2*3.1415)#512*8 is 1 rev in the ccw direction.
+    stepsReq=angle*(512*8)/(360) #512*8 is 1 rev in the ccw direction.
     
     if float(form['angleVal']) > 0:
       moveSteps(int(stepsReq),1) 
