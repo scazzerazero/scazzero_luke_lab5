@@ -7,7 +7,7 @@ import time
 class Stepper:
   sequence= [ [1,0,0,0],[1,1,0,0],[0,1,0,0],[0,1,1,0],
         [0,0,1,0],[0,0,1,1],[0,0,0,1],[1,0,0,1] ] #sequence of steps to go through on whole cycle
-  def__init__(self,pins):  #constructor
+  def __init__(self,pins):  #constructor
     GPIO.setmode(GPIO.BCM)
     for pin in pins:
       GPIO.setup(pin, GPIO.OUT, initial=0)
