@@ -57,7 +57,7 @@ while True:
       time.sleep(1)
 
     
-    if float(form['angleVal']) > 0:
+    if form['angleVal'] != None:
       angle=int(form['angleVal'])
       stepsReq=angle*(512*8)/(360) #512*8 is 1 rev in the ccw direction.
       moveSteps(stepsReq,1) 
