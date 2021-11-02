@@ -56,8 +56,15 @@ while True:
       form=json.load(f)
       time.sleep(0.3)
     angle=float(form['angleVal'])
-    stepsReq=angle*(512*8)/(2*3.1415)
-    moveSteps(int(stepsReq),1) #512*8 is 1 rev in the ccw direction.
+    stepsReq=angle*(512*8)/(2*3.1415)#512*8 is 1 rev in the ccw direction.
+
+    if float(form['angleVal']) > 0:
+      moveSteps(int(stepsReq),1) 
+
+    with open('lab5_text.txt', 'w') as f:    #clear text file
+      json.dump({'angleVal':0,'zerobutton':None},f)
+
+
     if str(form['zerobutton'])=="ZeroMotor":
       print("ZERO DAT BITCH PLEASE")
 
