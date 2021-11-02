@@ -56,7 +56,7 @@ while True:
       form=json.load(f)
       time.sleep(0.1)
     
-    moveSteps(float(form['angleVal']),1) #512*8 is 1 step in the ccw direction.
+    moveSteps(int(form['angleVal']),1) #512*8 is 1 step in the ccw direction.
     if str(form['zerobutton'])=="ZeroMotor":
       print("ZERO DAT BITCH PLEASE")
 
