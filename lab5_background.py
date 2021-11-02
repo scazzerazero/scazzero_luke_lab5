@@ -35,7 +35,6 @@ def halfstep(dir):
     GPIO.output(pins[pin], sequence[state][pin]) #indexes sequence [chunk] then the pins in it
 
   delay_us(1000)
- 
 
 
 #make another private method called...move a certain # half st
