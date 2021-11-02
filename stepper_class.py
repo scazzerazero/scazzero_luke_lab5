@@ -32,7 +32,7 @@ class Stepper:
     self.angle=targetAngle #the current angle is now the angle we just moved to!
     
   def Zero(self):
-    while self.ADC.read(0)<500 : #channel zero reads photoresistor value. more light = lower val
+    while self.ADC.read(0)<140 : #channel zero reads photoresistor value. more light = lower val
       print("we stisfied the condition! ADCread= "+str(self.ADC.read(0)))
       GPIO.output(self.ledPin, GPIO.HIGH)
       self.__halfstep(1)
