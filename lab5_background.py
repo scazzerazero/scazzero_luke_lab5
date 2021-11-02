@@ -2,7 +2,8 @@ import json
 import time
 import RPi.GPIO as GPIO 
 GPIO.setwarnings(False) 
-import Stepper
+
+from stepper_class.py import Stepper
 
 StepperObject=Stepper([18,21,22,23])# controller inputs: in1, in2, in3, in4
 
