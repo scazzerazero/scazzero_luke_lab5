@@ -57,6 +57,7 @@ while True:
       time.sleep(1)
       print(form)
     if form['angleVal'] != None:
+      print("angleVal != None!!! we in the for statement!")
       angle=int(form['angleVal'])
       stepsReq=int(angle*(512*8)/(360)) #512*8 is 1 rev in the ccw direction.
       moveSteps(stepsReq,1) 
