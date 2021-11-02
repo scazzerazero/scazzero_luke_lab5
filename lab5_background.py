@@ -1,55 +1,10 @@
 import json 
+import time
 import RPi.GPIO as GPIO 
-import time 
 GPIO.setwarnings(False) 
-GPIO.setmode(GPIO.BCM)
+import Stepper
 
-pins = [18,21,22,23] # controller inputs: in1, in2, in3, in4
-for pin in pins:
-  GPIO.setup(pin, GPIO.OUT, initial=0)
-
-# Define the pin sequence for counter-clockwise motion, noting that
-# two adjacent phases must be actuated together before stepping to
-# a new phase so that the rotor is pulled in the right direction:
-sequence= [ [1,0,0,0],[1,1,0,0],[0,1,0,0],[0,1,1,0],
-        [0,0,1,0],[0,0,1,1],[0,0,0,1],[1,0,0,1] ] #sequence of steps to go through on whole cycle
-#512 of these sequences will rotate me 360/8 deg
-
-state = 0 #current position in stator sequence
-
-def delay_us(tus): # use microseconds to improve time resolution
-  endTime = time.time() + float(tus)/ float(1E6)
-  while time.time() < endTime:
-
-    pass
-
-def halfstep(dir):
-  #dir=+/- 1 (ccw/cw)
-  global state
-  state+=dir#increment forward, decrement reverse
-  #we dont want to go past the list. if we rolloff reset ourselves at beginning open. was previously state +=1
-  #print("state= "+str(state))
-  if state>7: state=0 # we really ony need to check 8 or -1
-  elif state<0:state=7
-  for pin in range(4):
-    #print("GPIO output: sequence["+str(state)+"]"+"["+str(pin)+"]"+"= "+ str(sequence[state][pin]))
-    GPIO.output(pins[pin], sequence[state][pin]) #indexes sequence [chunk] then the pins in it
-
-  delay_us(1000)
-
-
-#make another private method called...move a certain # half st
-def moveSteps(steps,dir):
-  #move actuation sequence a given number of half steps
-  for step in range(steps):
-    #print("iterating step in range(steps): "+str(step))
-    halfstep(dir) #call halfsteps that number of times in right direction. Thats it.and
-  with open('lab5_text.txt', 'w') as f:    #clear text file
-        json.dump({'angleVal':0,'zerobutton':None},f)
-
-
-
-
+StepperObject=Stepper([18,21,22,23])# controller inputs: in1, in2, in3, in4
 
 while True:
   try:
@@ -59,17 +14,12 @@ while True:
       print(form)
     if form['angleVal'] != None:
       angle=int(form['angleVal'])
-      print("angle= "+str(angle))
-      stepsReq=float(angle*(512*8)/(360)) #512*8 is 1 rev in the ccw direction.
-      print("stepsReq= " +str(stepsReq))
-      moveSteps(int(stepsReq),1) 
-      time.sleep(0.5)
+      StepperObject.goAngle(angle)
+
       
     '''if str(form['zerobutton'])=="ZeroMotor":
       print("ZERO DAT BITCH PLEASE")
-      with open('lab5_tex.txt', 'w') as f:    #clear text file
-        json.dump({'angleVal':0,'zerobutton':None},f)'''
-      
+    '''    
   except KeyboardInterrupt:
     print("\nExiting!")
     GPIO.cleanup()
