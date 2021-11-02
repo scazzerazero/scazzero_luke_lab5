@@ -26,7 +26,7 @@ class Stepper:
     stepsReq=diff*(512*8)/(360) #512*8 is 1 rev in the ccw direction.
     sign = lambda x: (1, -1)[x<0]
     self.__moveSteps(int(abs(stepsReq)),sign(diff)) #steps required, direction (+/- 1)
-
+    self.angle=targetAngle #the current angle is now the angle we just moved to!
     
   #def Zero(self):
   #  self.ADC.read(0) #channel zero
