@@ -34,7 +34,7 @@ class Stepper:
   def Zero(self):
     while self.ADC.read(0)>20 : #channel zero reads thermistor value
       GPIO.output(self.ledPin, GPIO.HIGH)
-      self.__halfSteps(1)
+      self.__halfstep(1)
 
 
   #in class motor control
@@ -44,8 +44,7 @@ class Stepper:
     while time.time() < endTime:
       pass
   def __halfstep(self,dir):
-    #dir=+/- 1 (ccw/cw)
-     
+    #dir=+/- 1 (ccw/cw) 
     self.state+=dir#increment forward, decrement reverse
     #we dont want to go past the list. if we rolloff reset ourselves at beginning open. was previously state +=1
     #print("state= "+str(state))
