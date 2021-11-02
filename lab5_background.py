@@ -59,9 +59,9 @@ while True:
     if form['angleVal'] != None:
       print("angleVal != None!!! we in the for statement!")
       angle=int(form['angleVal'])
-      stepsReq=int(angle*(512*8)/(360)) #512*8 is 1 rev in the ccw direction.
+      stepsReq=float(angle*(512*8)/(360)) #512*8 is 1 rev in the ccw direction.
       print("stepsReq= " +str(stepsReq))
-      moveSteps(stepsReq,1) 
+      moveSteps(int(stepsReq),1) 
       with open('lab5_text.txt', 'w') as f:    #clear text file
         json.dump({'angleVal':0,'zerobutton':None},f)
     if str(form['zerobutton'])=="ZeroMotor":
