@@ -17,7 +17,22 @@ class Stepper:
     self.state=0 #current position in stator sequence
     #self.ADC=PCF8591(0x48) # By composition, we're extending the PCF8591 class. using it to define our Joystick class's attribute self.ADC
 
-#in class motor control:
+    
+  def goAngle(self,targetAngle):
+    #diff will give you the angle you should move to get to target angle
+    diff = ( targetAngle - self.angle + 180 ) % 360 - 180;
+    if (diff )< -180:
+      diff += 360 
+    stepsReq=float(diff*(512*8)/(360)) #512*8 is 1 rev in the ccw direction.
+    sign = lambda x: (1, -1)[x<0]
+    self.__moveSteps(abs(stepsReq),sign(diff)) #steps required, direction (+/- 1)
+
+    
+  #def Zero(self):
+  #  self.ADC.read(0) #channel zero
+  
+  #in class motor control
+  
   def __delay_us(self,tus): # use microseconds to improve time resolution
     endTime = time.time() + float(tus)/ float(1E6)
     while time.time() < endTime:
@@ -33,7 +48,7 @@ class Stepper:
     for pin in range(4):
       #print("GPIO output: sequence["+str(state)+"]"+"["+str(pin)+"]"+"= "+ str(sequence[state][pin]))
       GPIO.output(self.pins[pin], self.sequence[self.state][pin]) #indexes sequence [chunk] then the pins in it
-    self.delay_us(1000)
+    self.__delay_us(1000)
 
 
     #make another private method called...move a certain # half st
@@ -41,22 +56,6 @@ class Stepper:
       #move actuation sequence a given number of half steps
       for step in range(steps):
         #print("iterating step in range(steps): "+str(step))
-        self.halfstep(dir) #call halfsteps that number of times in right direction. Thats it.and
+        self.__halfstep(dir) #call halfsteps that number of times in right direction. Thats it.and
 
-
-    
-  def goAngle(self,targetAngle):
-    #diff will give you the angle you should move to get to target angle
-    diff = ( targetAngle - self.angle + 180 ) % 360 - 180;
-    if (diff )< -180:
-      diff += 360 
-    stepsReq=float(diff*(512*8)/(360)) #512*8 is 1 rev in the ccw direction.
-    sign = lambda x: (1, -1)[x<0]
-    self.moveSteps(abs(stepsReq),sign(diff)) #steps required, direction (+/- 1)
-
-    
-  #def Zero(self):
-  #  self.ADC.read(0) #channel zero
-  
-  
 
