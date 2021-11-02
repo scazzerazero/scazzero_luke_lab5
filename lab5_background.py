@@ -1,5 +1,6 @@
-import RPi.GPIO as GPIO
-import time
+import json 
+import RPi.GPIO as GPIO 
+import time 
 
 GPIO.setmode(GPIO.BCM)
 
@@ -44,10 +45,21 @@ def moveSteps(steps,dir):
     print("iterating step in range(steps): "+str(step))
     halfstep(dir) #call halfsteps that number of times in right direction. Thats it.and
 
+
+
+
+
+
+
 try:
-
-  moveSteps(512*8,1) #512*8 is 1 step in the ccw direction.
-
+  with open("lab5_text.txt",'r') as f:
+    form=json.load(f)
+    time.sleep(0.1)
+  
+  moveSteps(float(form['angleVal']),1) #512*8 is 1 step in the ccw direction.
+  if str(form['zerobutton'])=="ZeroMotor":
+    print("ZERO DAT BITCH PLEASE")
+  
 except:
   pass
 GPIO.cleanup() 

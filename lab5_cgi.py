@@ -7,17 +7,24 @@ import json
 import cgi
 import cgitb #for exception handling
 cgitb.enable()
+
+
+
 print('Content-type:text/html\n\n <!-- every print line will now be interp as html-->')
 
 form=cgi.FieldStorage()
 print('<br>')
 print(' The whole form:: '+str(form)+'<br>')
 print('<br>')
-print("value attatched to key 1: %s <br>"% form.getvalue('anglebutton')) #feed .getvalue a 'key'
-print("value attatched to key 2: %s <br>"% form.getvalue('zerobutton'))
+print("value attatched to zerobutton key: %s <br>"% form.getvalue('zerobutton'))
 print("The angle value sent in: %s <br>"% form.getvalue('angleVal'))
+#creating dict: {angleVal:180,zerobutton:None or ZeroMotor}
+formdict={'angleVal':form.getvalue('angleVal'),'zerobutton':form.getvalue('zerobutton')}
+#loading up json file:
+with open('lab5_text.txt','w') as f:
+	json.dump(formdict,f)
 
-
+#begin generation of wen page showing current state:
 print('<html>')
 print('<head><title>Stepper motor program! (CGI)</title></head>')
 print('<body style="background-color:lightgreen;">')
