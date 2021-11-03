@@ -49,7 +49,7 @@ class Stepper:
     endTime = time.time() + float(tus)/ float(1E6)
     while time.time() < endTime:
       pass
-  def __halfstep(self,dir):
+  def __halfstep(self,dir):#really an eigth step
     #dir=+/- 1 (ccw/cw) 
     self.state+=dir#increment forward, decrement reverse
     #we dont want to go past the list. if we rolloff reset ourselves at beginning open. was previously state +=1
@@ -57,7 +57,7 @@ class Stepper:
     if self.state>7: self.state=0 # we really ony need to check 8 or -1
     elif self.state<0:self.state=7
     for pin in range(4):
-      #print("GPIO output: sequence["+str(state)+"]"+"["+str(pin)+"]"+"= "+ str(sequence[state][pin]))
+      print("GPIO output: sequence["+str(state)+"]"+"["+str(pin)+"]"+"= "+ str(sequence[state][pin]))
       GPIO.output(self.pins[pin], self.sequence[self.state][pin]) #indexes sequence [chunk] then the pins in it
     self.__delay_us(1000)
 
@@ -66,7 +66,7 @@ class Stepper:
   def __moveSteps(self,steps,dir):
     #move actuation sequence a given number of half steps
     for step in range(steps):
-      #print("iterating step in range(steps): "+str(step))
+      print("iterating step in range(steps): "+str(step))
       self.__halfstep(dir) #call halfsteps that number of times in right direction. Thats it.and
 
 
