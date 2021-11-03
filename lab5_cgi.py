@@ -51,7 +51,7 @@ print('<br>')
 if formdict.get('angleVal') != None:
   anglevalue=formdict.get('angleVal')
 elif formdict.get('angleVal')==None:
-  anglevalue=0
+  anglevalue='0'
   
 url="https://api.thingspeak.com/update?api_key="+api+"&"+str(1)+"="+ anglevalue
 response=urlopen(url)
