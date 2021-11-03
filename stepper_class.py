@@ -24,15 +24,15 @@ class Stepper:
   def goAngle(self,targetAngle):
     
     #diff will give you the angle you should move to get to target angle
-    #print("self.Angle= "+str(self.angle))
+    print("self.Angle= "+str(self.angle))
     diff = ( targetAngle - self.angle + 180 ) % 360 - 180;
     if (diff )< -180:
       diff += 360 
-    #print("------")
-    #print("difference "+str(diff))
+    print("------")
+    print("difference "+str(diff))
     stepsReq=diff*(512*8)/(360) #512*8 is 1 rev in the ccw direction.
     sign = lambda x: (1, -1)[x<0]
-    #print("steps Req= "+ str(stepsReq))
+    print("steps Req= "+ str(stepsReq))
     self.__moveSteps(int(abs(stepsReq)),sign(diff)) #steps required, direction (+/- 1)
     self.angle=targetAngle #the current angle is now the angle we just moved to!
   
@@ -43,11 +43,11 @@ class Stepper:
     self.__delay_us(10000)     
     lit=self.ADC.read(0) #this is so we can compare percent change
     while (self.ADC.read(0)-lit)/lit<.09 : #channel zero reads pres value. more light = lower val.
-      #print("lit val= "+str(lit))
-      #print("ADCread= "+str(self.ADC.read(0)))
+      print("lit val= "+str(lit))
+      print("ADCread= "+str(self.ADC.read(0)))
       self.__halfstep(1)
     GPIO.output(self.ledPin, GPIO.LOW)
-    #self.angle=0 #this line sucks
+    self.angle=0 #this line sucks
 
 
   #===========in class motor control=========
@@ -64,17 +64,17 @@ class Stepper:
     if self.state>7: self.state=0 # we really ony need to check 8 or -1
     elif self.state<0:self.state=7
     for pin in range(4):
-      #print("GPIO output: sequence["+str(self.state)+"]"+"["+str(pin)+"]"+"= "+ str(self.sequence[self.state][pin]))
+      print("GPIO output: sequence["+str(self.state)+"]"+"["+str(pin)+"]"+"= "+ str(self.sequence[self.state][pin]))
       GPIO.output(self.pins[pin], self.sequence[self.state][pin]) #indexes sequence [chunk] then the pins in it
     self.__delay_us(1000)
-    #print("half steps are happeneing!")
+    print("half steps are happeneing!")
 
 
     #make another private method called...move a certain # half st
   def __moveSteps(self,steps,dir):
     #move actuation sequence a given number of half steps
     for step in range(steps):
-      #print("iterating step in range(steps): "+str(step))
+      print("iterating step in range(steps): "+str(step))
       self.__halfstep(dir) #call halfsteps that number of times in right direction. Thats it.and
 
 
