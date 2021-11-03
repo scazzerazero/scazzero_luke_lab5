@@ -25,7 +25,9 @@ while True:
       StepperObject.Zero()
       with open('lab5_text.txt','w') as f:
 	      json.dump({'angleVal':'0','zerobutton':None},f)
-      print("we just wrote this to form:" +str(form))
+      with open("lab5_text.txt",'r') as f:
+        form=json.load(f)
+        print("we just wrote this to form:" +str(form))
       time.sleep(0.7)
 
   except KeyboardInterrupt:
