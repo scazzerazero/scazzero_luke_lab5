@@ -10,6 +10,7 @@ cgitb.enable()
 
 
 
+
 print('Content-type:text/html\n\n <!-- every print line will now be interp as html-->')
 
 form=cgi.FieldStorage()
@@ -40,3 +41,11 @@ print('  <input type="submit" name ="zerobutton" value="ZeroMotor">')
 print('</form>')
 print('</body>')
 print('</html>')
+
+from urllib.request import urlopen #use to send/recieve data
+from urllib.parse import urlencode #use to structure a GET string
+#Thingspeak
+api="28S5DZU2FVPFIAFJ"
+params=formdict.update({"api_key":api})#append the data dictionary with api_key info
+params=urlencode(params)
+url="https://api.thingspeak.com/update?"+params
