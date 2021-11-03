@@ -48,7 +48,12 @@ api="28S5DZU2FVPFIAFJ"
 
 print('<br>')
 print('<br>')
-url="https://api.thingspeak.com/update?api_key="+api+"&"+str(1)+"="+ formdict.get('angleVal')
+if formdict.get('angleVal') != None:
+  anglevalue=formdict.get('angleVal')
+elif formdict.get('angleVal')==None:
+  anglevalue=0
+  
+url="https://api.thingspeak.com/update?api_key="+api+"&"+str(1)+"="+ anglevalue
 response=urlopen(url)
 print(response.status,response.reason)
 
