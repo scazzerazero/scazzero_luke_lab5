@@ -39,7 +39,7 @@ class Stepper:
       print("original lit val= "+str(lit))
       print("we stisfied the condition! ADCread= "+str(self.ADC.read(0)))
       self.__halfstep(1)
-    self.angle=0; #set angle to zero
+    #self.angle=0; #set angle to zero
     GPIO.output(self.ledPin, GPIO.LOW)
 
 
