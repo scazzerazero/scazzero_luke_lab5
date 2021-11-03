@@ -28,13 +28,9 @@ class Stepper:
       diff += 360 
     stepsReq=diff*(512*8)/(360) #512*8 is 1 rev in the ccw direction.
     sign = lambda x: (1, -1)[x<0]
-    print("self angle before= "+str(self.angle))
-    print("going into move steps= "+ str( int( abs(stepsReq) ))+"and = "+str(sign(diff)) )
     self.__moveSteps(int(abs(stepsReq)),sign(diff)) #steps required, direction (+/- 1)
-    self.__delay_us(10000)         
     self.angle=targetAngle #the current angle is now the angle we just moved to!
-    print("self angle after= "+str(self.angle))
-
+    print("angle we think we're at: "+str(self.angle))
   def Zero(self):
     GPIO.output(self.ledPin, GPIO.HIGH)
     self.__delay_us(10000)     
@@ -53,7 +49,7 @@ class Stepper:
     endTime = time.time() + float(tus)/ float(1E6)
     while time.time() < endTime:
       pass
-  def __halfstep(self,dir):#really an eigth step
+  def __halfstep(self,dir):
     #dir=+/- 1 (ccw/cw) 
     self.state+=dir#increment forward, decrement reverse
     #we dont want to go past the list. if we rolloff reset ourselves at beginning open. was previously state +=1
@@ -61,7 +57,7 @@ class Stepper:
     if self.state>7: self.state=0 # we really ony need to check 8 or -1
     elif self.state<0:self.state=7
     for pin in range(4):
-      #print("GPIO output: sequence["+str(self.state)+"]"+"["+str(pin)+"]"+"= "+ str(self.sequence[self.state][pin]))
+      #print("GPIO output: sequence["+str(state)+"]"+"["+str(pin)+"]"+"= "+ str(sequence[state][pin]))
       GPIO.output(self.pins[pin], self.sequence[self.state][pin]) #indexes sequence [chunk] then the pins in it
     self.__delay_us(1000)
 

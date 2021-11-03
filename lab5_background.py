@@ -16,7 +16,7 @@ while True:
     if form['angleVal'] != None:
       angle=int(form['angleVal'])
       StepperObject.goAngle(angle)
-      
+
       
     if str(form['zerobutton'])=="ZeroMotor":
       print("ZERO DAT BITCH PLEASE")
