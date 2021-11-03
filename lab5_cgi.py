@@ -41,7 +41,7 @@ print('  <input type="submit" name ="zerobutton" value="ZeroMotor">')
 
 
 from urllib.request import urlopen #use to send/recieve data
-from urllib.parse import urlencode #use to structure a GET string
+#from urllib.parse import urlencode #use to structure a GET string
 #Thingspeak
 params=formdict #use data we were storing in formdict and sending to txt file
 api="28S5DZU2FVPFIAFJ"
@@ -54,8 +54,8 @@ elif formdict.get('angleVal')==None:
   anglevalue='0'
   
 url="https://api.thingspeak.com/update?api_key="+api+"&"+str(1)+"="+ anglevalue
-#response=urlopen(url)
-#print(response.status,response.reason)
+response=urlopen(url)
+print(response.status,response.reason)
 
 #the two plots:
 print('<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1557902/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Angle+vs.+Time&type=line"></iframe>')
