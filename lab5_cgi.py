@@ -15,14 +15,14 @@ print('Content-type:text/html\n\n <!-- every print line will now be interp as ht
 
 form=cgi.FieldStorage()
 print('<br>')
-print(' The whole form:: '+str(form)+'<br>')
+#print(' The whole form:: '+str(form)+'<br>')
 print('<br>')
-print("value attatched to zerobutton key: %s <br>"% form.getvalue('zerobutton'))
-print("The angle value sent in: %s <br>"% form.getvalue('angleVal'))
+##print("value attatched to zerobutton key: %s <br>"% form.getvalue('zerobutton'))
+#print("The angle value sent in: %s <br>"% form.getvalue('angleVal'))
 #creating dict: {angleVal:180,zerobutton:None or ZeroMotor}
 formdict={'angleVal':form.getvalue('angleVal'),'zerobutton':form.getvalue('zerobutton')}
 print('<br>')
-print('The formdict being submitted: %s'% formdict)
+#print('The formdict being submitted: %s'% formdict)
 #loading up json file:
 with open('lab5_text.txt','w') as f:
 	json.dump(formdict,f)
@@ -41,9 +41,9 @@ print('  <input type="submit" name ="zerobutton" value="ZeroMotor">')
 
 
 from urllib.request import urlopen #use to send/recieve data
-from urllib.parse import urlencode #use to structure a GET string
+#from urllib.parse import urlencode #use to structure a GET string
 #Thingspeak
-params=formdict #use data we were storing in formdict and sending to txt file
+#params=formdict #use data we were storing in formdict and sending to txt file
 api="28S5DZU2FVPFIAFJ"
 
 print('<br>')
