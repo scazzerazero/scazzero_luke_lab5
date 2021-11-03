@@ -47,5 +47,8 @@ from urllib.parse import urlencode #use to structure a GET string
 #Thingspeak
 api="28S5DZU2FVPFIAFJ"
 params=formdict.update({"api_key":api})#append the data dictionary with api_key info
-params=urlencode(params)
-url="https://api.thingspeak.com/update?"+params
+print('<br>')
+print(params)
+
+#params=urlencode(params)
+#url="https://api.thingspeak.com/update?"+params
