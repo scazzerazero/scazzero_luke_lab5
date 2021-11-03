@@ -13,6 +13,8 @@ while True:
       form=json.load(f)
       time.sleep(0.5)
       print(form)
+
+      
     if form['angleVal'] != None:
       angle=int(form['angleVal'])
       StepperObject.goAngle(angle)

@@ -26,24 +26,29 @@ class Stepper:
     diff = ( targetAngle - self.angle + 180 ) % 360 - 180;
     if (diff )< -180:
       diff += 360 
+    print(" ")
+    print("difference "+diff)
     stepsReq=diff*(512*8)/(360) #512*8 is 1 rev in the ccw direction.
     sign = lambda x: (1, -1)[x<0]
+    print("steps Req= "+ stepsReq)
     self.__moveSteps(int(abs(stepsReq)),sign(diff)) #steps required, direction (+/- 1)
     self.angle=targetAngle #the current angle is now the angle we just moved to!
-    print("angle we think we're at: "+str(self.angle))
+  
+  
+  
   def Zero(self):
     GPIO.output(self.ledPin, GPIO.HIGH)
     self.__delay_us(10000)     
     lit=self.ADC.read(0) #this is so we can compare percent change
     while (self.ADC.read(0)-lit)/lit<.09 : #channel zero reads pres value. more light = lower val.
-      print("original lit val= "+str(lit))
-      print("we stisfied the condition! ADCread= "+str(self.ADC.read(0)))
+      print("lit val= "+str(lit))
+      print("ADCread= "+str(self.ADC.read(0)))
       self.__halfstep(1)
     GPIO.output(self.ledPin, GPIO.LOW)
 
 
 
-  #in class motor control
+  #===========in class motor control=========
   
   def __delay_us(self,tus): # use microseconds to improve time resolution
     endTime = time.time() + float(tus)/ float(1E6)
@@ -66,7 +71,7 @@ class Stepper:
   def __moveSteps(self,steps,dir):
     #move actuation sequence a given number of half steps
     for step in range(steps):
-      #print("iterating step in range(steps): "+str(step))
+      print("iterating step in range(steps): "+str(step))
       self.__halfstep(dir) #call halfsteps that number of times in right direction. Thats it.and
 
 
