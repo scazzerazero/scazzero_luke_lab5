@@ -57,7 +57,7 @@ class Stepper:
     if self.state>7: self.state=0 # we really ony need to check 8 or -1
     elif self.state<0:self.state=7
     for pin in range(4):
-      print("GPIO output: sequence["+str(self.state)+"]"+"["+str(pin)+"]"+"= "+ str(self.sequence[self.state][pin]))
+      #print("GPIO output: sequence["+str(self.state)+"]"+"["+str(pin)+"]"+"= "+ str(self.sequence[self.state][pin]))
       GPIO.output(self.pins[pin], self.sequence[self.state][pin]) #indexes sequence [chunk] then the pins in it
     self.__delay_us(1000)
 
@@ -66,7 +66,7 @@ class Stepper:
   def __moveSteps(self,steps,dir):
     #move actuation sequence a given number of half steps
     for step in range(steps):
-      print("iterating step in range(steps): "+str(step))
+      #print("iterating step in range(steps): "+str(step))
       self.__halfstep(dir) #call halfsteps that number of times in right direction. Thats it.and
 
 
