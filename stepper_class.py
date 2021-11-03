@@ -46,7 +46,7 @@ class Stepper:
       print("ADCread= "+str(self.ADC.read(0)))
       self.__halfstep(1)
     GPIO.output(self.ledPin, GPIO.LOW)
-
+    self.angle=0
 
 
   #===========in class motor control=========
