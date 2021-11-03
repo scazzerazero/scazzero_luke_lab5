@@ -27,10 +27,10 @@ class Stepper:
     if (diff )< -180:
       diff += 360 
     print(" ")
-    print("difference "+diff)
+    print("difference "+str(diff))
     stepsReq=diff*(512*8)/(360) #512*8 is 1 rev in the ccw direction.
     sign = lambda x: (1, -1)[x<0]
-    print("steps Req= "+ stepsReq)
+    print("steps Req= "+ str(stepsReq))
     self.__moveSteps(int(abs(stepsReq)),sign(diff)) #steps required, direction (+/- 1)
     self.angle=targetAngle #the current angle is now the angle we just moved to!
   
