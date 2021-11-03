@@ -15,7 +15,7 @@ while True:
       print(form)
 
       
-    if form['angleVal'] != '0':
+    if form['angleVal'] != None:
       angle=int(form['angleVal'])
       StepperObject.goAngle(angle)
 
@@ -28,7 +28,7 @@ while True:
       with open("lab5_text.txt",'r') as f:
         form=json.load(f)
         print("we just wrote this to form:" +str(form))
-      time.sleep(0.7)
+      time.sleep(1)
 
   except KeyboardInterrupt:
     print("\nExiting!")
