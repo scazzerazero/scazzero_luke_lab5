@@ -37,6 +37,7 @@ class Stepper:
     while (self.ADC.read(0)-lit)/lit<.10 : #channel zero reads pres value. more light = lower val.
       print("original lit val= "+str(lit))
       print("we stisfied the condition! ADCread= "+str(self.ADC.read(0)))
+      self.__delay_us(500)     
       self.__halfstep(1)
     GPIO.output(self.ledPin, GPIO.LOW)
 
