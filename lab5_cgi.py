@@ -54,6 +54,14 @@ params=urlencode(params)
 url="https://api.thingspeak.com/update?"+params
 response=urlopen(url)
 print(response.status,response.reason)
+
+#the two plots:
+print('<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1557902/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Angle+vs.+Time&type=line"></iframe>')
+
+print('<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1557902/widgets/375671"></iframe>')
+
+
+
 print('</form>')
 print('</body>')
 print('</html>')
