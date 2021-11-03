@@ -65,6 +65,7 @@ class Stepper:
       #print("GPIO output: sequence["+str(state)+"]"+"["+str(pin)+"]"+"= "+ str(sequence[state][pin]))
       GPIO.output(self.pins[pin], self.sequence[self.state][pin]) #indexes sequence [chunk] then the pins in it
     self.__delay_us(1000)
+    print("half steps are happeneing!")
 
 
     #make another private method called...move a certain # half st
