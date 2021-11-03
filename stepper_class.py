@@ -24,6 +24,7 @@ class Stepper:
   def goAngle(self,targetAngle):
     
     #diff will give you the angle you should move to get to target angle
+    print("self.Angle= "+str(self.angle))
     diff = ( targetAngle - self.angle + 180 ) % 360 - 180;
     if (diff )< -180:
       diff += 360 
