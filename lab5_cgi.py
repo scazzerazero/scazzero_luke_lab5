@@ -43,8 +43,9 @@ print('  <input type="submit" name ="zerobutton" value="ZeroMotor">')
 from urllib.request import urlopen #use to send/recieve data
 from urllib.parse import urlencode #use to structure a GET string
 #Thingspeak
+params=formdict #use data we were storing in formdict and sending to txt file
 api="28S5DZU2FVPFIAFJ"
-params=formdict.update({"api_key":api})#append the data dictionary with api_key info
+params['api_key'] = api
 print('<br>')
 print('The params for thingspeak: %s'% params)
 
