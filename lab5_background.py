@@ -21,9 +21,9 @@ while True:
     if str(form['zerobutton'])=="ZeroMotor":
       print("ZERO DAT BITCH PLEASE")
       StepperObject.Zero()
-      time.sleep(3)
+      time.sleep(0.5)
       with open('lab5_text.txt','w') as f:
-	      json.dump({'angleVal':0,'zerobutton':None},f)
+	      json.dump({'angleVal':'0','zerobutton':None},f)
   except KeyboardInterrupt:
     print("\nExiting!")
     GPIO.cleanup()
