@@ -51,7 +51,7 @@ print('<br>')
 print('The params for thingspeak: %s'% params)
 print('<br>')
 params=urlencode(params)
-url="https://api.thingspeak.com/update?api_key="+api+"&"+str(1)+"="+ str(params['angleVal'])
+url="https://api.thingspeak.com/update?api_key="+api+"&"+str(1)+"=100"
 response=urlopen(url)
 print(response.status,response.reason)
 
