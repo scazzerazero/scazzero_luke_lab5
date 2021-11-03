@@ -38,9 +38,7 @@ print(' <input type="text" name="angleVal" min="0" max="360" placeholder="from 0
 print('  <input type="submit" value="SubmitAngle">')
 print('  <br><br>')
 print('  <input type="submit" name ="zerobutton" value="ZeroMotor">')
-print('</form>')
-print('</body>')
-print('</html>')
+
 
 from urllib.request import urlopen #use to send/recieve data
 from urllib.parse import urlencode #use to structure a GET string
@@ -52,3 +50,8 @@ print(params)
 
 #params=urlencode(params)
 #url="https://api.thingspeak.com/update?"+params
+
+
+print('</form>')
+print('</body>')
+print('</html>')
