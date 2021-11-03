@@ -28,8 +28,12 @@ class Stepper:
       diff += 360 
     stepsReq=diff*(512*8)/(360) #512*8 is 1 rev in the ccw direction.
     sign = lambda x: (1, -1)[x<0]
+    print("self angle before= "+str(self.angle))
     self.__moveSteps(int(abs(stepsReq)),sign(diff)) #steps required, direction (+/- 1)
+    self.__delay_us(10000)         
     self.angle=targetAngle #the current angle is now the angle we just moved to!
+    print("self angle after= "+str(self.angle))
+
   def Zero(self):
     GPIO.output(self.ledPin, GPIO.HIGH)
     self.__delay_us(10000)     
