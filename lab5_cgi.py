@@ -15,14 +15,14 @@ print('Content-type:text/html\n\n <!-- every print line will now be interp as ht
 
 form=cgi.FieldStorage()
 print('<br>')
-print(' The whole form:: '+str(form)+'<br>')
+#print(' The whole form:: '+str(form)+'<br>')
 print('<br>')
-print("value attatched to zerobutton key: %s <br>"% form.getvalue('zerobutton'))
-print("The angle value sent in: %s <br>"% form.getvalue('angleVal'))
+#print("value attatched to zerobutton key: %s <br>"% form.getvalue('zerobutton'))
+#print("The angle value sent in: %s <br>"% form.getvalue('angleVal'))
 #creating dict: {angleVal:180,zerobutton:None or ZeroMotor}
 formdict={'angleVal':form.getvalue('angleVal'),'zerobutton':form.getvalue('zerobutton')}
 print('<br>')
-print('The formdict being submitted: %s'% formdict)
+#print('The formdict being submitted: %s'% formdict)
 #loading up json file:
 with open('lab5_text.txt','w') as f:
 	json.dump(formdict,f)
@@ -54,8 +54,8 @@ elif formdict.get('angleVal')==None:
   anglevalue='0'
   
 url="https://api.thingspeak.com/update?api_key="+api+"&"+str(1)+"="+ anglevalue
-response=urlopen(url)
-print(response.status,response.reason)
+#response=urlopen(url)
+#print(response.status,response.reason)
 
 #the two plots:
 print('<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1557902/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Angle+vs.+Time&type=line"></iframe>')

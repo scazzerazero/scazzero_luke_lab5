@@ -21,13 +21,13 @@ while True:
 
       
     if str(form['zerobutton'])=="ZeroMotor":
-      print("ZERO DAT BITCH PLEASE")
+      #print("ZERO DAT BITCH PLEASE")
       StepperObject.Zero()
       with open('lab5_text.txt','w') as f:
 	      json.dump({'angleVal':'0','zerobutton':None},f)
-      with open("lab5_text.txt",'r') as f:
-        form=json.load(f)
-        print("we just wrote this to form:" +str(form))
+      #with open("lab5_text.txt",'r') as f:
+      #  form=json.load(f)
+      #  print("we just wrote this to form:" +str(form))
       time.sleep(1)
 
   except KeyboardInterrupt:
