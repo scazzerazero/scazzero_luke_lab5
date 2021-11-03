@@ -49,10 +49,11 @@ api="28S5DZU2FVPFIAFJ"
 params['api_key'] = api
 print('<br>')
 print('The params for thingspeak: %s'% params)
-
+print('<br>')
 params=urlencode(params)
 url="https://api.thingspeak.com/update?"+params
-
+response=urlopen(url)
+print(response.status,response.reason)
 print('</form>')
 print('</body>')
 print('</html>')
