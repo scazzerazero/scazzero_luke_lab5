@@ -22,6 +22,7 @@ class Stepper:
 
     
   def goAngle(self,targetAngle):
+    
     #diff will give you the angle you should move to get to target angle
     diff = ( targetAngle - self.angle + 180 ) % 360 - 180;
     if (diff )< -180:
@@ -45,6 +46,7 @@ class Stepper:
       print("ADCread= "+str(self.ADC.read(0)))
       self.__halfstep(1)
     GPIO.output(self.ledPin, GPIO.LOW)
+    self.angle=0
 
 
 
