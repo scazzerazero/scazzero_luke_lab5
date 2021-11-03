@@ -33,8 +33,9 @@ class Stepper:
     
   def Zero(self):
     lit=self.ADC.read(0) #this is so we can compare percent change
-    while (self.ADC.read(0)-lit)/lit<0.10 : #channel zero reads pres value. more light = lower val.
-      print("we stisfied the condition! ADCread % change= "+str((abs(self.ADC.read(0)-lit))/lit))
+    while (self.ADC.read(0)-lit)/lit<.10 : #channel zero reads pres value. more light = lower val.
+      print("original lit val= "+str(lit))
+      print("we stisfied the condition! ADCread= "+str(self.ADC.read(0)))
       GPIO.output(self.ledPin, GPIO.HIGH)
       self.__halfstep(1)
     GPIO.output(self.ledPin, GPIO.LOW)
