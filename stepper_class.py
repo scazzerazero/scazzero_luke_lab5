@@ -30,7 +30,6 @@ class Stepper:
     sign = lambda x: (1, -1)[x<0]
     self.__moveSteps(int(abs(stepsReq)),sign(diff)) #steps required, direction (+/- 1)
     self.angle=targetAngle #the current angle is now the angle we just moved to!
-    print("angle we think we're at: "+str(self.angle))
   def Zero(self):
     GPIO.output(self.ledPin, GPIO.HIGH)
     self.__delay_us(10000)     

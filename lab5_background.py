@@ -24,7 +24,6 @@ while True:
       time.sleep(3)
       with open('lab5_text.txt','w') as f:
 	      json.dump({'angleVal':0,'zerobutton':None},f)
-      print("wrote this to txt file= "+str({'angleVal':form['angleVal'],'zerobutton':None}))
   except KeyboardInterrupt:
     print("\nExiting!")
     GPIO.cleanup()
