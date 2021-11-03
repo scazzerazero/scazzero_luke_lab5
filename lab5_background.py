@@ -15,7 +15,7 @@ while True:
       print(form)
 
       
-    if form['angleVal'] != None:
+    if form['angleVal'] != '0':
       angle=int(form['angleVal'])
       StepperObject.goAngle(angle)
 
