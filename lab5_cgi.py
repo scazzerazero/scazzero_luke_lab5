@@ -46,12 +46,12 @@ from urllib.parse import urlencode #use to structure a GET string
 params=formdict #use data we were storing in formdict and sending to txt file
 api="28S5DZU2FVPFIAFJ"
 
-params['api_key'] = api
+#params['api_key'] = api
 print('<br>')
 print('The params for thingspeak: %s'% params)
 print('<br>')
-params=urlencode(params)
-url="https://api.thingspeak.com/update?api_key="+api+"&"+str(1)+"="+ params.get('angleVal')
+#params=urlencode(params)
+url="https://api.thingspeak.com/update?api_key="+api+"&"+str(1)+"="+ formdict.get('angleVal')
 response=urlopen(url)
 print(response.status,response.reason)
 
