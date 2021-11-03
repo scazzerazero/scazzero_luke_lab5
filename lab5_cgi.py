@@ -52,7 +52,6 @@ print('The params for thingspeak: %s'% params)
 #params=urlencode(params)
 #url="https://api.thingspeak.com/update?"+params
 
-
 print('</form>')
 print('</body>')
 print('</html>')
