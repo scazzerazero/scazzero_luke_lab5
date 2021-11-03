@@ -14,9 +14,9 @@ cgitb.enable()
 print('Content-type:text/html\n\n <!-- every print line will now be interp as html-->')
 
 form=cgi.FieldStorage()
-print('<br>')
+#print('<br>')
 #print(' The whole form:: '+str(form)+'<br>')
-print('<br>')
+#print('<br>')
 ##print("value attatched to zerobutton key: %s <br>"% form.getvalue('zerobutton'))
 #print("The angle value sent in: %s <br>"% form.getvalue('angleVal'))
 #creating dict: {angleVal:180,zerobutton:None or ZeroMotor}
